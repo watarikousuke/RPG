@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bases.Human;
-import bases.Living;
 import bases.Monster;
 import humans.Brave;
 import humans.Fighter;
@@ -53,7 +52,7 @@ public class Main {
 		// 第何回戦かを示すカウンター変数
 		int count = 1;
 		
-		// 勝敗がつくまで無限ループ
+;		// 勝敗がつくまで無限ループ
 		while (true) {
 
 			System.out.printf("\n★ 第%d回戦 ==========\n", count);
@@ -63,24 +62,39 @@ public class Main {
 			// 人間グループから1人選択
 			choiceHuman(humans);
 			// モンスターグループから1人選択
-			choiceMonster(monsters);
+			Human.target = choiceMonster(monsters);
 			// 選ばれた人間が、選ばれたモンスターを攻撃
-			Living.attack();
+			Human.attack(Human.target);
 			// モンスターのHPが0以下になれば、モンスターは倒れ、そのモンスターをモンスターグループから削除
+			if ( Human.target.getHp() <= 0 ) {
+				monsters.remove(Human.target);
+			}
 
 			// モンスターグループに誰もいなくなれば、人間グループの勝利
+			if ( monsters.isEmpty() ) {
+				System.out.println("人間グループの勝利!!");
+				break;
+			}
+			
 
 			System.out.println("\n[モンスターのターン！]\n");
 			
 			// 人間グループから1人選択
-			choiceHuman(humans);
+			Monster.target = choiceHuman(humans);
 			// モンスターグループから1人選択
 			choiceMonster(monsters);
 			// 選ばれたモンスターが、選ばれた人間を攻撃
-
+			Monster.attack(Monster.target);
 			// 人間のHPが0以下になれば、人間は倒れ、その人間をモンスターグループから削除
+			if ( Monster.target.getHp() <= 0 ) {
+				monsters.remove(Monster.target);
+			}
 
 			// 人間グループに誰もいなくなれば、人間グループの敗北
+			if ( monsters.isEmpty() ) {
+				System.out.println("人間グループの敗北!!");
+				break;
+			}
 			
 			// 現在の各グループの状態を一覧表示
 			showGroupInfos(humans, monsters);

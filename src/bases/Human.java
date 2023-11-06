@@ -4,17 +4,20 @@ import utils.Dice;
 
 //人間を表現する抽象クラス
 public abstract class Human extends Living {
+	public static Living target;
 
 	// コンストラクタ
 	 public Human(String name, String weapon) {
 		// Livingクラスで定義したコンストラクタを利用する
 		super(name, weapon);
+		
 	}
 	 
 	
 	// attackメソッドのオーバーライド
 	@Override
 	public void attack(Living target) {
+		this.target = target;
 		
 		// 1から10までのサイコロを振り、自分の攻撃力とかけ合わせた値を相手に与えるダメージとする
 		int damage = Dice.get(1, 10) + offensive;

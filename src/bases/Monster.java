@@ -4,6 +4,8 @@ import utils.Dice;
 
 public abstract class Monster extends Living {
 	
+	public static Living target;
+
 	// コンストラクタ
 	public Monster(String name, String weapon) {
 		// Livingクラスで定義したコンストラクタを利用する
@@ -13,6 +15,7 @@ public abstract class Monster extends Living {
 	// attackメソッドのオーバーライド
 	@Override
 	public void attack(Living target) {
+		this.target = target;
 		
 		// 1から10までのサイコロを振り、自分の攻撃力とかけ合わせた値を相手に与えるダメージとする
 		int damage = Dice.get(1, 10) + offensive;
