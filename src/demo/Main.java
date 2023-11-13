@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bases.Human;
+import bases.Living;
 import bases.Monster;
 import humans.Brave;
 import humans.Fighter;
@@ -14,6 +15,8 @@ import monsters.Slime;
 import utils.Dice;
 
 public class Main {
+	public static Living target;
+
 	public static void main(String[] args) {
 		
 		
@@ -64,7 +67,7 @@ public class Main {
 			// モンスターグループから1人選択
 			Human.target = choiceMonster(monsters);
 			// 選ばれた人間が、選ばれたモンスターを攻撃
-			Human.attack(Human.target);
+			Human.attack(Living target);
 			// モンスターのHPが0以下になれば、モンスターは倒れ、そのモンスターをモンスターグループから削除
 			if ( Human.target.getHp() <= 0 ) {
 				monsters.remove(Human.target);
@@ -84,7 +87,7 @@ public class Main {
 			// モンスターグループから1人選択
 			choiceMonster(monsters);
 			// 選ばれたモンスターが、選ばれた人間を攻撃
-			Monster.attack(Monster.target);
+			Monster.attack(Living target);
 			// 人間のHPが0以下になれば、人間は倒れ、その人間をモンスターグループから削除
 			if ( Monster.target.getHp() <= 0 ) {
 				monsters.remove(Monster.target);

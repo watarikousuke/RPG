@@ -5,7 +5,6 @@ import utils.Dice;
 
 public class Slime extends Monster {
 	
-	
 	public Slime(String name, String weapon) {
 		super(name, weapon);
 		hp = Dice.get(70, 130);
