@@ -3,8 +3,7 @@ package bases;
 import utils.Dice;
 
 public abstract class Monster extends Living {
-	public static int target;
-	
+	public static int monsterTarget;
 
 	// コンストラクタ
 	public Monster(String name, String weapon) {
@@ -23,7 +22,7 @@ public abstract class Monster extends Living {
 				target.hp = target.hp - damage;
 
 				// コンソールにステータスを表示
-				System.out.println( name + "が"  + weapon + "で攻撃！" + target + "に" + damage + "のダメージを与えた。");
+				System.out.println( name + "が"  + weapon + "で攻撃！" + target.name + "に" + damage + "のダメージを与えた。");
 				
 	}
 

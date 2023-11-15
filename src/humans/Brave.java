@@ -10,5 +10,7 @@ public class Brave extends Human {
 		hp = Dice.get(170, 230);
 		offensive = Dice.get(7, 13);
 	}
+	
+	
 
 }
