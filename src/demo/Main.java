@@ -85,7 +85,6 @@ public class Main {
 			// モンスターグループから1人選択
 			Monster monsterAttacker =choiceMonster(monsters);
 			// 選ばれたモンスターが、選ばれた人間を攻撃
-			//((Monster) monsters).attack(target);
 			((Living) monsterAttacker).attack(target);
 			// 人間のHPが0以下になれば、人間は倒れ、その人間をモンスターグループから削除
 			if ( target.getHp() <= 0 ) {
