@@ -15,11 +15,8 @@ import monsters.Slime;
 import utils.Dice;
 
 public class Main {
-	public static Living target;
 
 	public static void main(String[] args) {
-		
-		
 
 		System.out.println("★★ ==== 戦いの開始だ！！ ==== ★★");
 
@@ -63,15 +60,14 @@ public class Main {
 			System.out.println("\n[人間のターン！]\n");
 
 			// 人間グループから1人選択
-			//choiceHuman(humans);
+			Human humanAttacker = choiceHuman(humans);
 			// モンスターグループから1人選択
 			Living target = choiceMonster(monsters);
 			// 選ばれた人間が、選ばれたモンスターを攻撃
-			//((Human) humans).attack(target);
-			choiceHuman(humans).attack(target);
+			((Living) humanAttacker).attack(target);
 			// モンスターのHPが0以下になれば、モンスターは倒れ、そのモンスターをモンスターグループから削除
 			if ( target.getHp() <= 0 ) {
-				System.out.println(target.getName() + "は倒れた。");
+				System.out.println("★　「" + target.getName() + "」は倒れた。");
 				monsters.remove(target);
 			}
 
@@ -87,13 +83,13 @@ public class Main {
 			// 人間グループから1人選択
 			target = choiceHuman(humans);
 			// モンスターグループから1人選択
-			//choiceMonster(monsters);
+			Monster monsterAttacker =choiceMonster(monsters);
 			// 選ばれたモンスターが、選ばれた人間を攻撃
 			//((Monster) monsters).attack(target);
-			choiceMonster(monsters).attack(target);
+			((Living) monsterAttacker).attack(target);
 			// 人間のHPが0以下になれば、人間は倒れ、その人間をモンスターグループから削除
 			if ( target.getHp() <= 0 ) {
-				System.out.println(target.getName() + "は倒れた。");
+				System.out.println("★　「" + target.getName() + "」は倒れた。");
 				humans.remove(target);
 			}
 
